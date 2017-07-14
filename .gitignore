@@ -2,6 +2,5 @@ venv
 *.pyc
 staticfiles
 .env
-/.idea
 .idea
-.idea/
+vcs.xml
