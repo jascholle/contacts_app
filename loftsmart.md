@@ -27,8 +27,7 @@ E.164 format enforced by regex on contact model
 ## Django Tastypie
 
 The app used Django Tastypie to manage the API. It is more lightweight than Django Rest Framework and after a period of stagnation is back in active development.
-
-
+The authentication is done based on Django user credentials and the authorization is not checked. Tastypie offers more substantial options for real production enviroments, like session authentication.
 
 ## Implementation Requirements
 
@@ -58,7 +57,7 @@ Create Contact app migrations (May also be done before previous step)
     python manage.py makemigrations
     python manage.py migrate
     
-Optional: Create super user 
+yCreate super user 
 (https://docs.djangoproject.com/en/1.11/intro/tutorial02/#creating-an-admin-user)
 
     python manage.py createsuperuser
