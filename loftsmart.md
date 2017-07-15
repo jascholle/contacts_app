@@ -29,6 +29,16 @@ E.164 format enforced by regex on contact model
 The app used Django Tastypie to manage the API. It is more lightweight than Django Rest Framework and after a period of stagnation is back in active development.
 The authentication is done based on Django user credentials and the authorization is not checked. Tastypie offers more substantial options for real production enviroments, like session authentication.
 
+## AngularJS
+
+#### ContactView
+
+In the contact view, when we add, edit, or delete a contact, we grab the whole list of contacts over again. This is a convenience to make sure that the user is seeing a proper representation of what exisits in the database. In a large application, this could have performance issues, but should be sufficient for this app.
+
+
+
+
+
 ## Implementation Requirements
 
 - The backend has to be developed with Django + Django REST Framework (API errors should be handled appropriately).
@@ -57,7 +67,7 @@ Create Contact app migrations (May also be done before previous step)
     python manage.py makemigrations
     python manage.py migrate
     
-yCreate super user 
+Create super user 
 (https://docs.djangoproject.com/en/1.11/intro/tutorial02/#creating-an-admin-user)
 
     python manage.py createsuperuser
