@@ -32,6 +32,8 @@ The authentication is done based on Django user credentials and the authorizatio
 
 The testing is done using the standard Django unittest framework. Pytest allows a little bit more flexibilty, but isn't leaps and bounds better in my experience.
 
+The phone number validation is enforced by length and digits, apart from a leading '+'.
+
 ## AngularJS
 
 #### ContactView
@@ -39,6 +41,8 @@ The testing is done using the standard Django unittest framework. Pytest allows 
 In the contact view, when we add, edit, or delete a contact, we grab the whole list of contacts over again. This is a convenience to make sure that the user is seeing a proper representation of what exisits in the database. In a large application, this could have performance issues, but should be sufficient for this app.
 
 The styling is done with Angular Material. 
+
+The phone number validation is enforced by length and digits, apart from a leading '+'.
 
 ### Deployment instructions
 
