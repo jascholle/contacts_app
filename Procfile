@@ -1,1 +1,1 @@
-web: gunicorn loftsmart.wsgi
+web: gunicorn contacts_app.wsgi

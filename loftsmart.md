@@ -50,6 +50,8 @@ The goal of this exercise is to create a simple contacts app that interacts with
 
 ### Deployment instructions
 
+
+
 Install python packages
 
     pip install -r requirements.txt
