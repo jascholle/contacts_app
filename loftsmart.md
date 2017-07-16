@@ -74,6 +74,10 @@ Deploy code to app
 Migrate the initial Django migrations
 
     heroku run python manage.py migrate
+    
+Create user
+
+    heroku run python manage.py createsuperuser
 
 
 #### Other
