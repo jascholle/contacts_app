@@ -72,3 +72,12 @@ Create super user
 
     python manage.py createsuperuser
     
+Install npm
+
+install karma
+
+    npm install karma --save-dev
+    
+instal karma plugins
+
+    npm install karma-jasmine karma-chrome-launcher jasmine-core --save-dev
