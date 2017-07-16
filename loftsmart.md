@@ -48,10 +48,28 @@ The goal of this exercise is to create a simple contacts app that interacts with
 
 - The phone number formatting is done by a filter on the app.
 
-### Deployment instructions (Heroku)
+### Deployment instructions 
+
+#### Heroku
+
+Create a Heroku app
+
+    heroku create
+
+Add that app as a remote on the repository
+
+    heroku git:remote -a [heroku-app-name]
+
+Deploy code to app
+
+    git push heroku master
+
+Migrate the initial Django migrations
+
+    heroku run python manage.py migrate
 
 
-
+#### Other
 
 Install python packages
 
@@ -73,7 +91,6 @@ Create super user
     
     
 
-    
     
 ### Testing Instructions
 
