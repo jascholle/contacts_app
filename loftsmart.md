@@ -48,7 +48,8 @@ The goal of this exercise is to create a simple contacts app that interacts with
 
 - The phone number formatting is done by a filter on the app.
 
-### Deployment instructions
+### Deployment instructions (Heroku)
+
 
 
 
