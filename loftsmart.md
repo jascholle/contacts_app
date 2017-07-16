@@ -26,23 +26,27 @@ The goal of this exercise is to create a simple contacts app that interacts with
  
 ### Tastypie
 
-The app used Django Tastypie to manage the API. It is more lightweight than Django Rest Framework and after a period of stagnation is back in active development.
+- The app used Django Tastypie to manage the API. It is more lightweight than Django Rest Framework and after a period of stagnation is back in active development.
 
-The authentication is done based on Django user credentials and the authorization is not checked. Tastypie offers more substantial options for real production enviroments, like session authentication.
+- The authentication is done based on Django user credentials and the authorization is not checked. Tastypie offers more substantial options for real production enviroments, like session authentication.
 
-The testing is done using the standard Django unittest framework. Pytest allows a little bit more flexibilty, but isn't leaps and bounds better in my experience.
+- The testing is done using the standard Django unittest framework. Pytest allows a little bit more flexibilty, but isn't leaps and bounds better in my experience.
 
-The phone number validation is enforced by length and digits, apart from a leading '+' by a regex in the model.
+- The phone number validation is enforced by length and digits, apart from a leading '+' by a regex on the model.
 
 ## AngularJS
 
 #### ContactView
 
-In the contact view, when we add, edit, or delete a contact, we grab the whole list of contacts over again. This is a convenience to make sure that the user is seeing a proper representation of what exisits in the database. In a large application, this could have performance issues, but should be sufficient for this app.
+- In the contact view, when we add, edit, or delete a contact, we grab the whole list of contacts over again. This is a convenience to make sure that the user is seeing a proper representation of what exisits in the database. In a large application, this could have performance issues, but should be sufficient for this app.
 
-The styling is done with Angular Material. 
+- The styling is done with Angular Material. 
 
-The phone number validation is enforced by length and digits, apart from a leading '+'.
+- The phone number validation is enforced by length and digits, apart from a leading '+' by validation on the inputs.
+
+#### App
+
+- The phone number formatting is done by a filter on the app.
 
 ### Deployment instructions
 
