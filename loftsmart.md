@@ -52,6 +52,8 @@ The goal of this exercise is to create a simple contacts app that interacts with
 
 #### Heroku
 
+The current version of the repo is set up for deployment to Heroku.
+
 Create a Heroku app
 
     heroku create
