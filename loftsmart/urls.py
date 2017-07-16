@@ -6,7 +6,6 @@ from contacts.api import ContactResource
 
 contact_resource = ContactResource()
 
-
 urlpatterns = [
     # url(r'^contacts/', include('contacts.urls')),
     url(r'^$', views.index, name='index'),
