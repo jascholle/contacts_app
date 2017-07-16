@@ -28,7 +28,7 @@ SECRET_KEY = '9tfirgvttmag!7^d1)+4b6%8p)9o1kvt)55=5q5zs08c8hv51w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pacific-oasis-27433.herokuapp.com']
+ALLOWED_HOSTS = ['pacific-oasis-27433.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
