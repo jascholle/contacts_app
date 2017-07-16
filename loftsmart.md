@@ -15,13 +15,10 @@ The goal of this exercise is to create a simple contacts app that interacts with
 - Name
 - Phone Number (E.164 format)
 
-E.164 format enforced by regex on contact model
-
 
 ### Extra Functionality (Not Required):
 
 - Edit contact
-- Add image to contact model
 
 
 ## Django Tastypie
@@ -39,11 +36,6 @@ In the contact view, when we add, edit, or delete a contact, we grab the whole l
 
 
 
-## Implementation Requirements
-
-- The backend has to be developed with Django + Django REST Framework (API errors should be handled appropriately).
-- The frontend has to be developed with Angular and must communicate with the backend through the REST API.
-- Use (or don’t use) any CSS framework you wish to create a pleasing UI.
 
 ## Notes
 
@@ -72,6 +64,10 @@ Create super user
 
     python manage.py createsuperuser
     
+    
+    
+### Testing Instructions
+    
 Install npm (see https://nodejs.org/en/download/ for instructions based on system)
 
 install karma
@@ -82,3 +78,10 @@ install karma plugins
 
     npm install karma-jasmine karma-chrome-launcher jasmine-core --save-dev
 
+install karma CLI for ease of use
+
+    npm install -g karma-cli
+    
+Run tests
+
+    karma start
