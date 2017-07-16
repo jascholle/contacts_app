@@ -32,7 +32,7 @@ The authentication is done based on Django user credentials and the authorizatio
 
 The testing is done using the standard Django unittest framework. Pytest allows a little bit more flexibilty, but isn't leaps and bounds better in my experience.
 
-The phone number validation is enforced by length and digits, apart from a leading '+'.
+The phone number validation is enforced by length and digits, apart from a leading '+' by a regex in the model.
 
 ## AngularJS
 
