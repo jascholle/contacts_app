@@ -1,0 +1,10 @@
+Django==1.11.3
+django-tastypie==0.14.0 #API framework
+python-dateutil==2.6.1 #Used for tastypie
+python-mimeparse==1.6.0 #used for Tastypie
+pytz==2017.2 #Timezone support
+six==1.10.0 #Used for Tastypie
+dj-database-url==0.4.1 #Used for Heroku
+gunicorn==19.6.0 #Used for Heroku
+psycopg2==2.6.2 #Used for Heroku
+whitenoise==3.2 #Used for Heroku

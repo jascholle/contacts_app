@@ -1,0 +1,1 @@
+web: gunicorn loftsmart.wsgi

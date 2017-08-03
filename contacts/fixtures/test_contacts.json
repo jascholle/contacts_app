@@ -1,0 +1,6 @@
+[
+  {"model": "contacts.contact", "pk": 1, "fields": {"phone_number": "7032999999", "name": "jack"}},
+  {"model": "contacts.contact", "pk": 2, "fields": {"phone_number": "111111111111111", "name": "bob"}},
+  {"model": "contacts.contact", "pk": 3, "fields": {"phone_number": "88888888", "name": "peter paul mary jim greg angela thomas copernicus alabama arkansas"}}
+]
+  

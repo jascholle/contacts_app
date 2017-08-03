@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>Contacts App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'contacts/app.css' %}">
+</head>
+  {% verbatim Angular %}
+  <body ng-app="myApp">
+    <div ng-controller="ContactController">
+      <ng-include src="'static/contacts/contactView/contactView.html'"></ng-include>
+    </div>
+  </body>
+{% endverbatim Angular %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-mocks.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+  <script src="{% static 'contacts/app.js' %}"></script>
+  <script src="{% static 'contacts/contactView/contactView.js' %}" ></script>
+
+</html>
