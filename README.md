@@ -54,7 +54,7 @@ Add that app as a remote on the repository
 
     heroku git:remote -a [heroku-app-name]
     
-Add app name to ALLOWED_HOSTS in loftsmart/settings.py
+Add app name to ALLOWED_HOSTS in contacts_app/settings.py
 
     ALLOWED_HOSTS = ['pacific-oasis-27433.herokuapp.com']
 
