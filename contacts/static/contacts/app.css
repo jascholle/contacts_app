@@ -2,6 +2,11 @@
     max-width: 500px;
 }
 
+.max-width-700 {
+    max-width: 700px;
+}
+
+
 h2,h3, input {
 font-family: 'Raleway', sans-serif;
 }

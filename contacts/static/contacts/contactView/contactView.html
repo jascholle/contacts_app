@@ -11,7 +11,7 @@
             </div>
         </md-toolbar>
 
-        <div class="max-width-500 md-padding">
+        <div class="max-width-700 md-padding">
             <form name="allContactForm" novalidate>
                 <md-list flex>
                     <md-list-item class="secondary-button-padding" ng-repeat="contact in contacts | filter:search" >
@@ -46,6 +46,9 @@
                                 </div>
                             </ng-form>
                         </div>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction($index, 1)" >Phone</md-button>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction($index, 2)" >Text</md-button>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="openDetail($index)" >Detail</md-button>
 
                         <md-button class="md-secondary md-primary md-raised"  ng-click="openEdit($index)" ng-hide="currentContactIndex=={{$index}}" class="fade">Edit</md-button>
                         <md-button class="md-secondary md-accent md-raised" ng-click="closeEdit()" ng-show="currentContactIndex=={{$index}}">Cancel</md-button>
@@ -63,7 +66,7 @@
     <md-toolbar class="md-theme-indigo" layout="row">
         <h1 class="md-toolbar-tools">Add New Contact</h1>
         <span flex></span>
-        <md-button ng-click="close()">Close</md-button>
+        <md-button ng-click="closeRight()">Close</md-button>
     </md-toolbar>
     <md-content layout-padding="" layout="column" layout-align="start start">
         <form name="addContactForm" ng-submit="addContact(newContact)" novalidate>
@@ -88,5 +91,27 @@
                 <md-button type="submit" ng-disabled="addContactForm.$invalid">Save Contact</md-button>
             </div>
         </form>
+    </md-content>
+</md-sidenav>
+
+
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" id="leftSideNav" md-disable-backdrop="true">
+    <md-toolbar class="md-theme-indigo" layout="row">
+        <h1 class="md-toolbar-tools">Contact Details</h1>
+        <span flex></span>
+        <md-button ng-click="closeLeft()">Close</md-button>
+    </md-toolbar>
+    <md-content layout-padding="" layout="column" layout-align="start start">
+        <h2> {{ currentContact.name }} </h2>
+        <h2> {{ currentContact.phone_number }} </h2>
+        <md-list flex>
+            <md-list-item class="secondary-button-padding" ng-repeat="interaction in currentContact.interactions" >
+                <div class="md-list-item-text" style="width: 250px" layout="column">
+                    <h4> {{ interaction.created }} </h4>
+                    <h4> {{ interaction.type.name }} </h4>
+                </div>
+                <md-divider></md-divider>
+            </md-list-item>
+        </md-list>
     </md-content>
 </md-sidenav>
