@@ -1,3 +1,5 @@
+import datetime
+
 from tastypie.resources import ModelResource
 from contacts.models import Contact, Interaction, InteractionType
 from tastypie.authentication import BasicAuthentication
@@ -15,6 +17,19 @@ class ContactResource(ModelResource):
         # authentication = BasicAuthentication()
         authorization = Authorization()
         limit = 0
+
+    def dehydrate(self, bundle):
+        try:
+            last_interaction = Interaction.objects.filter(contact=bundle.obj).last().created
+        except:
+            last_interaction = datetime.datetime.min
+        bundle.data['last_interaction'] = last_interaction
+
+        x = bundle.data['interactions']
+        print(x)
+
+
+        return bundle
 
 
 class InteractionTypeResource(ModelResource):
@@ -37,3 +52,12 @@ class InteractionResource(ModelResource):
         # authentication = BasicAuthentication()
         authorization = Authorization()
         limit = 0
+
+
+class InteractionCreatedResource(ModelResource):
+
+    class Meta:
+        queryset = Interaction.objects.all()
+        resource_name = 'interaction_created'
+        # authentication = BasicAuthentication()
+        authorization = Authorization()

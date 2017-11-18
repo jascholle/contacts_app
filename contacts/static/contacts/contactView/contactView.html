@@ -14,45 +14,16 @@
         <div class="max-width-700 md-padding">
             <form name="allContactForm" novalidate>
                 <md-list flex>
-                    <md-list-item class="secondary-button-padding" ng-repeat="contact in contacts | filter:search" >
+                    <md-list-item class="secondary-button-padding" ng-repeat="contact in contacts | orderBy:'last_interaction' | filter:search" >
 
-                        <div class="md-list-item-text" style="width: 250px" layout="column" ng-hide="currentContactIndex=={{$index}}">
+                        <div class="md-list-item-text" style="width: 250px" layout="column">
                             <h2> {{ contact.name }} </h2>
-                            <h4> {{ contact.phone_number | tel}} </h4>
+                            <h4> {{ contact.last_interaction | date:"MM/dd/yyyy 'at' hh:mma"}} </h4>
                         </div>
 
-                        <div class="md-list-item-text" style="width: 250px" layout="column" ng-show="currentContactIndex=={{$index}}">
-                            <ng-form name="editContactForm">
-                                <md-input-container>
-                                    <label>User name:</label>
-                                    <input type="text" name="name" ng-model="tempEditContact.name" required>
-                                    <div ng-messages="editContactForm.name.$error">
-                                        <div ng-message="required">
-                                            This is required.
-                                        </div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container>
-                                    <label>Phone Number:</label>
-                                    <input type="text" name="phoneNumber" ng-model="tempEditContact.phone_number" required ng-minlength="8" ng-maxlength="16" ng-pattern="\+?1?\d{8,15}">
-                                    <div ng-messages="editContactForm.phoneNumber.$error" role="alert">
-                                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                            Your phone number must be between 8 and 16 characters long and be all digits except for initial '+'
-                                        </div>
-                                    </div>
-                                </md-input-container>
-                                <div>
-                                    <md-button type="button" class="md-primary md-raised" ng-disabled="editContactForm.$invalid" ng-click="editContact(tempEditContact, contact.id)">Save Contact</md-button>
-                                </div>
-                            </ng-form>
-                        </div>
-                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction($index, 1)" >Phone</md-button>
-                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction($index, 2)" >Text</md-button>
-                        <md-button class="md-secondary md-primary md-raised"  ng-click="openDetail($index)" >Detail</md-button>
-
-                        <md-button class="md-secondary md-primary md-raised"  ng-click="openEdit($index)" ng-hide="currentContactIndex=={{$index}}" class="fade">Edit</md-button>
-                        <md-button class="md-secondary md-accent md-raised" ng-click="closeEdit()" ng-show="currentContactIndex=={{$index}}">Cancel</md-button>
-                        <md-button class="md-secondary md-warn md-raised" ng-click="deleteContact(contact.id)">Delete</md-button>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction(contact.id, 1)" >Phone</md-button>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="createInteraction(contact.id, 2)" >Text</md-button>
+                        <md-button class="md-secondary md-primary md-raised"  ng-click="openDetail(contact.id)" >Detail</md-button>
 
                         <md-divider></md-divider>
                     </md-list-item>
@@ -95,20 +66,57 @@
 </md-sidenav>
 
 
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4" id="leftSideNav" md-disable-backdrop="true">
+<md-sidenav class="md-sidenav-left wideside" md-component-id="left" md-whiteframe="4" id="leftSideNav" md-disable-backdrop="true">
     <md-toolbar class="md-theme-indigo" layout="row">
         <h1 class="md-toolbar-tools">Contact Details</h1>
         <span flex></span>
         <md-button ng-click="closeLeft()">Close</md-button>
     </md-toolbar>
     <md-content layout-padding="" layout="column" layout-align="start start">
-        <h2> {{ currentContact.name }} </h2>
-        <h2> {{ currentContact.phone_number }} </h2>
+
+        <div layout="column" ng-hide="editing">
+            <h2>Name: {{ currentContact.name }} </h2>
+            <h2>Number: {{ currentContact.phone_number | tel }} </h2>
+        </div>
+
+        <div layout="column" ng-show="editing">
+            <ng-form name="editContactForm">
+                <md-input-container>
+                    <label>Name:</label>
+                    <input type="text" name="name" ng-model="tempEditContact.name" required>
+                    <div ng-messages="editContactForm.name.$error">
+                        <div ng-message="required">
+                            This is required.
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Phone Number:</label>
+                    <input type="text" name="phoneNumber" ng-model="tempEditContact.phone_number" required ng-minlength="8" ng-maxlength="16" ng-pattern="\+?1?\d{8,15}">
+                    <div ng-messages="editContactForm.phoneNumber.$error" role="alert">
+                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            Your phone number must be between 8 and 16 characters long and be all digits except for initial '+'
+                        </div>
+                    </div>
+                </md-input-container>
+                <div>
+                    <md-button type="button" class="md-primary md-raised" ng-disabled="editContactForm.$invalid" ng-click="editContact(tempEditContact, currentContact.id)">Save Contact</md-button>
+                </div>
+            </ng-form>
+        </div>
+        <div layout="row">
+            <md-button class="md-secondary md-primary md-raised"  ng-click="openEdit($index)" ng-hide="editing" class="fade">Edit</md-button>
+            <md-button class="md-secondary md-accent md-raised" ng-click="closeEdit()" ng-show="editing">Cancel</md-button>
+
+            <md-button class="md-secondary md-warn md-raised" ng-click="deleteContact(currentContact.id)">Delete</md-button>
+        </div>
+
+
         <md-list flex>
-            <md-list-item class="secondary-button-padding" ng-repeat="interaction in currentContact.interactions" >
+            <md-list-item  ng-repeat="interaction in currentContact.interactions | orderBy:'-created'" >
                 <div class="md-list-item-text" style="width: 250px" layout="column">
-                    <h4> {{ interaction.created }} </h4>
-                    <h4> {{ interaction.type.name }} </h4>
+                    <h4> {{ interaction.type.name }} at {{ interaction.created | date:"MM/dd/yyyy 'at' h:mma" }} </h4>
+                    <h6> {{ interaction.type.notes }}</h6>
                 </div>
                 <md-divider></md-divider>
             </md-list-item>

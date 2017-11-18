@@ -6,6 +6,10 @@
     max-width: 700px;
 }
 
+.wideside {
+    min-width: 500px;
+}
+
 
 h2,h3, input {
 font-family: 'Raleway', sans-serif;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.contactView', ['ngMaterial', 'ngMessages'])
-.controller('ContactController', ['$scope', '$http', '$mdSidenav', function($scope, $http, $mdSidenav) {
+.controller('ContactController', ['$scope', '$http', '$filter', '$mdSidenav', function($scope, $http, $filter, $mdSidenav) {
 
     $scope.getAllContacts = function() {
         $http.get('/api/v1/contact/?format=json')
@@ -26,8 +26,8 @@ angular.module('myApp.contactView', ['ngMaterial', 'ngMessages'])
           });
     };
 
-    $scope.createInteraction = function(contactIndex, type_id) {
-        var newInteractionJson = '{"contact": {"pk":' +  $scope.contacts[contactIndex].id + '}, "type": {"pk":' + type_id + '}, "notes": null }';
+    $scope.createInteraction = function(contactID, type_id) {
+        var newInteractionJson = '{"contact": {"pk":' +  contactID + '}, "type": {"pk":' + type_id + '}, "notes": null }';
         console.log(newInteractionJson);
         $http.post('/api/v1/interaction/', newInteractionJson)
         .then(function successCallback(response) {
@@ -39,12 +39,12 @@ angular.module('myApp.contactView', ['ngMaterial', 'ngMessages'])
     };
 
 
-
     $scope.editContact = function(changeContactParams, changeContactId) {
         $http.put('/api/v1/contact/' + changeContactId + '/', changeContactParams)
         .then(function successCallback(response) {
             $scope.getAllContacts();
             $scope.closeEdit();
+            $scope.closeLeft();
             },
           function errorCallback(response) {
             console.log(response);
@@ -55,28 +55,29 @@ angular.module('myApp.contactView', ['ngMaterial', 'ngMessages'])
         $http.delete('/api/v1/contact/' + deleteContactId + '/')
         .then(function successCallback(response) {
             console.log(response);
+            $scope.closeEdit();
             $scope.getAllContacts();
           },
           function errorCallback(response) {
+            console.log(response);
             console.log(response);
           });
     };
 
 
     $scope.openEdit = function(contactIndex){
-        $scope.currentContactIndex = contactIndex;
-        $scope.tempEditContact.name = $scope.contacts[contactIndex].name;
-        $scope.tempEditContact.phone_number = $scope.contacts[contactIndex].phone_number;
+    $scope.editing = true;
+        $scope.tempEditContact.name = $scope.currentContact.name;
+        $scope.tempEditContact.phone_number = $scope.currentContact.phone_number;
     };
 
-    $scope.openDetail = function(contactIndex){
-        console.log('od', contactIndex)
-        $scope.currentContact = $scope.contacts[contactIndex];
+    $scope.openDetail = function(contactID){
+        $scope.currentContact = $filter('filter')($scope.contacts, {'id':contactID}, true)[0];
         $scope.toggleLeft();
     };
 
     $scope.closeEdit = function(){
-        $scope.currentContactIndex = null;
+        $scope.editing = false;
         $scope.tempEditContact = {};
     };
 
@@ -99,7 +100,8 @@ angular.module('myApp.contactView', ['ngMaterial', 'ngMessages'])
     };
 
 
-    $scope.currentContactIndex = null;
+
+    $scope.editing = false;
     $scope.tempEditContact = {};
 
     $scope.newContact = {};
